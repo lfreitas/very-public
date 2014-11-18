@@ -12,10 +12,10 @@ date <- as.Date(as.POSIXct(date, origin="1970-01-01"))
 price <- dat[seq(0,length(dat),2)]
 df <- data.frame(date,price)
 
-# fit an ARIMA model to th eprice data
+# fit an ARIMA model to the price data & plot
 fit <- auto.arima(df$price)
 plot(forecast(fit,h=5))
-plot(seq.Date(from=df$date[1],by=1,length.out=370),forecast(fit,h=5))
+
 # zoom into the forward-period forecasted values
 plot(seq.Date(from=df$date[length(df)],by=1,length.out=10),forecast(fit,h=10)$mean)
 
