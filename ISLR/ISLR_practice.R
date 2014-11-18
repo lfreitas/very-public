@@ -1,8 +1,8 @@
 library(ISLR)
 library(plyr)
 library(MASS)
-library(car)   #companion to applied regresion -- diagnostic functions
-library(robustHD) #used for winsorizing data
+library(car)      # companion to applied regresion -- diagnostic functions
+library(robustHD) # used for winsorizing data
 
 #
 #
