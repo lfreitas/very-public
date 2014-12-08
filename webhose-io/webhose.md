@@ -1,0 +1,1 @@
+A neat pipeline for doing text mining of recently-posted web content. The current script is built around instagram but can easily be modified to accommodate any single web site.
