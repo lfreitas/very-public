@@ -4,50 +4,7 @@ library(MASS)
 library(car)      # companion to applied regresion -- diagnostic functions
 library(robustHD) # used for winsorizing data
 
-#
-#
-#
-#   EDA
-#
-#
-#
 
-
-
-
-college <- read.csv("http://www-bcf.usc.edu/~gareth/ISL/College.csv")
-
-head(college)         #look at the first 10 obs
-str(college)          #summary of the variable types and values
-
-
-rownames(college) <- college[,1] #assign college names to the row names
-college <- college[,-1]          #eliminate college name as a variable
-head(college)
-
-summary(college)      #statistical summary of all vars
-pairs(college)        #pairwise scatterplots for entire data set -- takes a bit to produce
-
-plot(college$Private,college$Outstate) # boxplot of Outstate using Private as binning var
-
-#divide universities into two groups based on whether or not the proportion of students coming 
-#from the top 10% of their high school classes exceeds 50 %
-college$Elite <- rep("No",nrow(college))          #set default to No
-college$Elite[college$Top10perc > 50] <- "Yes"    #apply conditional logic to convert some to Yes
-college$Elite <- as.factor(college$Elite)
-
-plot(college$Elite,college$Outstate)  #generate a boxplot of the new var and out-of-state attendance
-
-#plot two histograms side-by-side
-split.screen(c(1,2))
-screen(1)
-hist(college$Outstate)
-screen(2)
-hist(college$Apps)
-close.screen(all=TRUE)
-
-#generate a heatmap
-image(college$Outstate,college$Apps,college$expend)
 
 
 #
