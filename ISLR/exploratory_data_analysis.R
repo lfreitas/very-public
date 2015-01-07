@@ -84,3 +84,12 @@ sapply(college, class)
 # select numeric vars
 nums <- sapply(college, is.numeric)
 means <- sapply(college[ , nums], mean)
+
+
+# TO DO
+# Merging data
+# Aggregating data using SQL using sqldf
+# Reshaping/pivoting data using the reshape library
+# Subsetting data
+# First dot last dot processing -- see: 
+# http://stackoverflow.com/questions/13765834/r-equivalent-of-first-or-last-sas-operator
