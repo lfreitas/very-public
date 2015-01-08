@@ -1,8 +1,11 @@
 library(ISLR)
 library(plyr)
+library(dplyr)
 library(MASS)
 library(car)      # companion to applied regresion -- diagnostic functions
 library(robustHD) # used for winsorizing data
+library(sqldf)
+library(nycflights13)
 
 #
 #
@@ -87,9 +90,33 @@ means <- sapply(college[ , nums], mean)
 
 
 # TO DO
-# Merging data
+# Merging data using native R syntax
 # Aggregating data using SQL using sqldf
+x <- sqldf("select BooksCuts, avg(Books) as books_avg 
+           from college 
+           group by BooksCuts")
 # Reshaping/pivoting data using the reshape library
 # Subsetting data
 # First dot last dot processing -- see: 
 # http://stackoverflow.com/questions/13765834/r-equivalent-of-first-or-last-sas-operator
+# Using dplyr for data manipulation
+dim(flights)
+head(flights)
+# subsetting on certain parameters
+filter(flights, month == 1, day == 1)
+# subsetting to rows by position
+slice(flights, 1:10)
+# sorting ascending
+arrange(flights, year, month, day)
+# sorting descending
+arrange(flights, desc(arr_delay))
+# select subsets of variables
+select(flights, year, month, day)
+# select subsets of variables by exclusion
+select(flights, -(year:day))
+# rename a variable
+rename(flights, tail_num = tailnum)
+# select distinct values
+distinct(select(flights, tailnum))
+# select distinct values with multiple criteria
+distinct(select(flights, origin, dest))
