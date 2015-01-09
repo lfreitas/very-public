@@ -92,9 +92,15 @@ means <- sapply(college[ , nums], mean)
 # TO DO
 # Merging data using native R syntax
 # Aggregating data using SQL using sqldf
-x <- sqldf("select BooksCuts, avg(Books) as books_avg 
+df0 <- sqldf("select BooksCuts, avg(Books) as books_avg 
            from college 
            group by BooksCuts")
+df1 <- sqldf("select carrier, tailnum, flight, count(*) as count
+           from flights 
+           group by carrier, tailnum, flight")
+
+
+
 # Reshaping/pivoting data using the reshape library
 # Subsetting data
 # First dot last dot processing -- see: 
@@ -120,3 +126,16 @@ rename(flights, tail_num = tailnum)
 distinct(select(flights, tailnum))
 # select distinct values with multiple criteria
 distinct(select(flights, origin, dest))
+# adding new columns
+# note that mutate() allows new columns to be used an inputs to other calcc
+# within the same statement
+mutate(flights,
+       gain = arr_delay - dep_delay,
+       speed = distance / air_time * 60,
+       gain_per_hour = gain / (air_time / 60)
+       )
+# add new columns and drop all other columns
+transmute(flights,
+          gain = arr_delay - dep_delay,
+          gain_per_hour = gain / (air_time / 60)
+)
