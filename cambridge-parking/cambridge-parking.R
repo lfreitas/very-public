@@ -13,7 +13,7 @@ offset <- 0
 get <- 1
 
 if (length(get)==0){
-  message("Nothing else to get.")
+  message("Nothing to get.")
 } else while (length(get)>0) {
   message(paste("Fetching at offset of",offset))
   url <- getURL(paste("https://data.cambridgema.gov/resource/vnxa-cuyr.json?$order=:id&$limit=25000&$offset=",as.integer(offset),sep=""),.opts = list(ssl.verifypeer = FALSE))
